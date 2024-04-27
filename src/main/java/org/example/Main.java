@@ -19,7 +19,7 @@ public class Main {
         System.out.println("Czy chesz dodac słowo y/n");
         String czyKontynuwać = scanner.next();
 
-        while (czyKontynuwać.equals("y")){
+        while ("y".equals(czyKontynuwać)){
             System.out.println("Podaj polskie slowo: ");
             String polishWord = scanner.next();
 
