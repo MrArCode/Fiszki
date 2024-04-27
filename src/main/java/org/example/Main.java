@@ -1,12 +1,13 @@
 package org.example;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        LinkedList<Words> words = new LinkedList<>();
+        List<Words> words = new LinkedList<>();
 
 //        polskieSłowa[0] = "woda";
 //        polskieSłowa[1] = "ogień";
