@@ -8,8 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class WordsFile {
-    //    private final String path = "/tmp/flashcards";
-    private final String path = "src/main/java/org/example/listsOfWords";
+    private final String path = "/tmp/flashcards";
 
     @SneakyThrows
     public void add(PairOfWords pairOfWords) {
@@ -44,8 +43,8 @@ public class WordsFile {
         List<String> listOfPolishWords = new ArrayList<>();
         List<String> listOfEnglishWords = new ArrayList<>();
 
-        FileReader fileOfPolishWords = new FileReader("src/main/java/org/example/listsOfWords/polishWords");
-        FileReader fileOfEnglishWords = new FileReader("src/main/java/org/example/listsOfWords/englishWords");
+        FileReader fileOfPolishWords = new FileReader("/tmp/flashcards/polishWords");
+        FileReader fileOfEnglishWords = new FileReader("/tmp/flashcards/englishWords");
 
         try (BufferedReader bufferedReaderPolish = new BufferedReader(fileOfPolishWords)) {
             String line;
