@@ -4,7 +4,7 @@ import lombok.Value;
 
 @Value
 
-public class Word {
+public class PairOfWords {
     String polishWord;
     String englishWord;
 
