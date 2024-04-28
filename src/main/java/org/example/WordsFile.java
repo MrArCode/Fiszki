@@ -47,9 +47,6 @@ public class WordsFile {
         FileReader fileOfPolishWords = new FileReader("src/main/java/org/example/listsOfWords/polishWords");
         FileReader fileOfEnglishWords = new FileReader("src/main/java/org/example/listsOfWords/englishWords");
 
-
-        BufferedReader bufferedReaderE = new BufferedReader(fileOfEnglishWords);
-
         try (BufferedReader bufferedReaderPolish = new BufferedReader(fileOfPolishWords)) {
             String line;
             while ((line = bufferedReaderPolish.readLine()) != null) {
@@ -59,9 +56,9 @@ public class WordsFile {
             System.out.println("There is no such file. You have to create the file first.");
             e.printStackTrace();
         }
-        try (BufferedReader bufferedReaderEnglih = new BufferedReader(fileOfEnglishWords)) {
+        try (BufferedReader bufferedReaderEnglish = new BufferedReader(fileOfEnglishWords)) {
             String line;
-            while ((line = bufferedReaderEnglih.readLine()) != null) {
+            while ((line = bufferedReaderEnglish.readLine()) != null) {
                 listOfEnglishWords.add(line);
             }
         } catch (IOException e) {
