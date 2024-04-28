@@ -1,11 +1,10 @@
 package org.example;
 
-import lombok.Data;
 import lombok.Value;
 
 @Value
 
-public class Words {
+public class Word {
     String polishWord;
     String englishWord;
 

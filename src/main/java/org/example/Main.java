@@ -5,53 +5,47 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        List<Word> listOfWords = new LinkedList<>();
         Scanner scanner = new Scanner(System.in);
 
-        List<Words> words = new LinkedList<>();
+        System.out.println("Would you like to add a word? (y/n)");
+        String wantToAddMoreWords = scanner.next();
+        WordsFile wordsFile = new WordsFile();
 
-//        polskieSłowa[0] = "woda";
-//        polskieSłowa[1] = "ogień";
-//        polskieSłowa[2] = "ziemia";
-//
-//        angielskieSłowa[0] = "water";
-//        angielskieSłowa[1] = "fire";
-//        angielskieSłowa[2] = "earth";
-
-        System.out.println("Czy chesz dodac słowo y/n");
-        String czyKontynuwać = scanner.next();
-
-        while ("y".equals(czyKontynuwać)){
-            System.out.println("Podaj polskie slowo: ");
+        while ("y".equals(wantToAddMoreWords)){
+            System.out.println("Enter the Polish word: ");
             String polishWord = scanner.next();
 
-            System.out.println("Podaj angielskie slowo: ");
+            System.out.println("Enter the English word: ");
             String englishWord = scanner.next();
 
-            Words word = new Words(polishWord, englishWord);
-            words.add(word);
+            wordsFile.add(new Word(polishWord, englishWord));
 
-            System.out.println("Czy chesz dodac słowo y/n");
-            czyKontynuwać = scanner.next();
+            System.out.println("Do you want to add another word? (y/n)");
+            wantToAddMoreWords = scanner.next();
         }
-        System.out.println("Skończone");
+        System.out.println("Finished");
 
 
 
 
 
-        int counter = 0;
 
-        for (Words word: words) {
-            System.out.println("Podaj slowo " + word.getPolishWord() + " w języku angielskim: ");
-            String answer = scanner.next();
-            if (answer.equals(word.getEnglishWord())) {
-                System.out.println("Gratulacje, poprawna odpowiedz");
-                counter++;
-            } else {
-                System.out.println("Błe∂na odpowiedz");
-            }
-        }
 
-        System.out.println("Ostateczny wynik:" + counter);
+//        int counter = 0;
+//
+//        for (Word word: words) {
+//            System.out.println("Podaj slowo " + word.getPolishWord() + " w języku angielskim: ");
+//            String answer = scanner.next();
+//            if (answer.equals(word.getEnglishWord())) {
+//                System.out.println("Gratulacje, poprawna odpowiedz");
+//                counter++;
+//            } else {
+//                System.out.println("Błe∂na odpowiedz");
+//            }
+//        }
+//
+//        System.out.println("Ostateczny wynik:" + counter);
     }
 }
