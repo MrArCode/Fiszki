@@ -13,27 +13,26 @@ public class WordsFile {
     @SneakyThrows
     public void add(PairOfWords pairOfWords) {
         File file = new File(path);
-        File listOfPolishWords = new File(path, "polishWords");
-        File listOfEnglishWords = new File(path, "englishWords");
-
         if (!file.exists()) {
             file.mkdir();
         }
-        if (!listOfPolishWords.exists()) {
-            listOfPolishWords.createNewFile();
-        }
-        if (!listOfEnglishWords.exists()) {
-            listOfEnglishWords.createNewFile();
-        }
+        createFolder(new File(path, "polishWords"), pairOfWords, "polish");
+        createFolder(new File(path, "englishWords"), pairOfWords, "english");
+    }
 
-        try (FileWriter fileWriter = new FileWriter(listOfPolishWords, true)) {
-            fileWriter.append(pairOfWords.getPolishWord() + '\n');
+    @SneakyThrows
+    public void createFolder(File file, PairOfWords pairOfWords, String whichFile) {
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        try (FileWriter fileWriter = new FileWriter(file, true)) {
+            if (whichFile.equals("polish")) {
+                fileWriter.append(pairOfWords.getPolishWord() + "\n");
+            } else {
+                fileWriter.append(pairOfWords.getEnglishWord() + "\n");
+            }
             fileWriter.flush();
-        }
 
-        try (FileWriter fileWriter1 = new FileWriter(listOfEnglishWords, true)) {
-            fileWriter1.append(pairOfWords.getEnglishWord() + '\n');
-            fileWriter1.flush();
         }
     }
 
@@ -53,7 +52,7 @@ public class WordsFile {
     public List<String> readFromFile(File path) {
         List<String> list = new ArrayList<>();
 
-        if (!path.exists()){
+        if (!path.exists()) {
             return list;
         }
 
