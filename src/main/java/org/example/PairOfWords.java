@@ -1,11 +1,2 @@
 package org.example;
-
-import lombok.Value;
-
-@Value
-
-public class PairOfWords {
-    String polishWord;
-    String englishWord;
-
-}
+public record PairOfWords(String polishWord, String englishWord){}

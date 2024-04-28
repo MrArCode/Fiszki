@@ -27,9 +27,9 @@ public class WordsFile {
         }
         try (FileWriter fileWriter = new FileWriter(file, true)) {
             if (whichFile.equals("polish")) {
-                fileWriter.append(pairOfWords.getPolishWord() + "\n");
+                fileWriter.append(pairOfWords.polishWord() + "\n");
             } else {
-                fileWriter.append(pairOfWords.getEnglishWord() + "\n");
+                fileWriter.append(pairOfWords.englishWord() + "\n");
             }
             fileWriter.flush();
 
@@ -65,6 +65,4 @@ public class WordsFile {
         }
         return list;
     }
-
-
 }

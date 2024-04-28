@@ -10,11 +10,10 @@ public class Main {
         List<PairOfWords> listOfWords = new LinkedList<>();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Would you like to add a word? (y/n)");
-        String wantToAddMoreWords = scanner.next();
         WordsFile wordsFile = new WordsFile();
+        String wantToAddMoreWords = "y";
 
-        while ("y".equals(wantToAddMoreWords)) {
+        do {
             System.out.println("Enter the Polish word: ");
             String polishWord = scanner.next();
 
@@ -22,10 +21,11 @@ public class Main {
             String englishWord = scanner.next();
 
             wordsFile.add(new PairOfWords(polishWord, englishWord));
-
-            System.out.println("Do you want to add another word? (y/n)");
+            System.out.println("Would you like to add a word? (y/n)");
             wantToAddMoreWords = scanner.next();
-        }
+
+        } while ("y".equals(wantToAddMoreWords));
+
         System.out.println("Finished");
 
 
@@ -33,9 +33,9 @@ public class Main {
         listOfWords = wordsFile.readWords();
 
         for (PairOfWords word : listOfWords) {
-            System.out.println("Enter the word \"" + word.getPolishWord() + "\" in English: ");
+            System.out.println("Enter the word \"" + word.polishWord() + "\" in English: ");
             String answer = scanner.next();
-            if (answer.equals(word.getEnglishWord())) {
+            if (answer.equals(word.englishWord())) {
                 System.out.println("Congratulations, correct answer");
                 counterOfPoints++;
             } else {
