@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,9 +8,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        List<PairOfWords> listOfWords = new LinkedList<>();
-        Scanner scanner = new Scanner(System.in);
+        WordsFile wordsFile = addingNewWords();
+        flashcardsTest(wordsFile);
 
+    }
+
+    public static WordsFile addingNewWords(){
+        Scanner scanner = new Scanner(System.in);
         WordsFile wordsFile = new WordsFile();
         String wantToAddMoreWords = "y";
 
@@ -28,10 +33,12 @@ public class Main {
 
         System.out.println("Finished");
 
-
+        return wordsFile;
+    }
+    public static void flashcardsTest(WordsFile wordsFile){
+        Scanner scanner = new Scanner(System.in);
         int counterOfPoints = 0;
-        listOfWords = wordsFile.readWords();
-
+        List<PairOfWords> listOfWords = wordsFile.readWords();
         for (PairOfWords word : listOfWords) {
             System.out.println("Enter the word \"" + word.polishWord() + "\" in English: ");
             String answer = scanner.next();
@@ -39,11 +46,9 @@ public class Main {
                 System.out.println("Congratulations, correct answer");
                 counterOfPoints++;
             } else {
-                System.out.println("Incorrect answer");
+                System.out.println("Incorrect answer, the correct one is \"" + word.englishWord() +"\"");
             }
         }
-
         System.out.println("Final score: " + counterOfPoints);
-
     }
 }
