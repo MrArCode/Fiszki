@@ -40,35 +40,31 @@ public class WordsFile {
     @SneakyThrows
     public List<PairOfWords> readWords() {
         List<PairOfWords> listOfWords = new LinkedList<>();
-        List<String> listOfPolishWords = new ArrayList<>();
-        List<String> listOfEnglishWords = new ArrayList<>();
-
-        FileReader fileOfPolishWords = new FileReader("/tmp/flashcards/polishWords");
-        FileReader fileOfEnglishWords = new FileReader("/tmp/flashcards/englishWords");
-
-        try (BufferedReader bufferedReaderPolish = new BufferedReader(fileOfPolishWords)) {
-            String line;
-            while ((line = bufferedReaderPolish.readLine()) != null) {
-                listOfPolishWords.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("There is no such file. You have to create the file first.");
-            e.printStackTrace();
-        }
-        try (BufferedReader bufferedReaderEnglish = new BufferedReader(fileOfEnglishWords)) {
-            String line;
-            while ((line = bufferedReaderEnglish.readLine()) != null) {
-                listOfEnglishWords.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println("There is no such file. You have to create the file first.");
-            e.printStackTrace();
-        }
+        List<String> listOfPolishWords = readFromFile(new File("/tmp/flashcards/polishWords"));
+        List<String> listOfEnglishWords = readFromFile(new File("/tmp/flashcards/englishWords"));
 
         for (int i = 0; i < listOfPolishWords.size(); i++) {
             listOfWords.add(new PairOfWords(listOfPolishWords.get(i), listOfEnglishWords.get(i)));
         }
         return listOfWords;
+    }
+
+    @SneakyThrows
+    public List<String> readFromFile(File path) {
+        List<String> list = new ArrayList<>();
+
+        if (!path.exists()){
+            return list;
+        }
+
+        FileReader fileReader = new FileReader(path);
+        try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                list.add(line);
+            }
+        }
+        return list;
     }
 
 
