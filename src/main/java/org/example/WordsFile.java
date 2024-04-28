@@ -3,6 +3,9 @@ package org.example;
 import lombok.SneakyThrows;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,15 +30,14 @@ public class WordsFile {
         }
         try (FileWriter fileWriter = new FileWriter(file, true)) {
             if (whichFile.equals("polish")) {
-                fileWriter.append(pairOfWords.polishWord() + "\n");
+                fileWriter.append(pairOfWords.polishWord()).append(System.lineSeparator());
             } else {
-                fileWriter.append(pairOfWords.englishWord() + "\n");
+                fileWriter.append(pairOfWords.englishWord()).append(System.lineSeparator());
             }
             fileWriter.flush();
 
         }
     }
-
     @SneakyThrows
     public List<PairOfWords> readWords() {
         List<PairOfWords> listOfWords = new LinkedList<>();
@@ -49,20 +51,14 @@ public class WordsFile {
     }
 
     @SneakyThrows
-    public List<String> readFromFile(File path) {
+    public List<String> readFromFile(File file) {
         List<String> list = new ArrayList<>();
 
-        if (!path.exists()) {
+        if (!file.exists()) {
             return list;
         }
 
-        FileReader fileReader = new FileReader(path);
-        try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                list.add(line);
-            }
-        }
+        list = Files.readAllLines(file.toPath());
         return list;
     }
 }
